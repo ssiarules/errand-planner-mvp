@@ -3,104 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ErrandPlanner MVP</title>
+    <title>ErrandPlanner MVP - Optimize Your Routes</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="app-container">
-        <!-- Header -->
-        <header class="app-header">
-            <h1>📋 ErrandPlanner</h1>
-            <p class="tagline">Organize your errands efficiently</p>
+    <div class="container">
+        <header>
+            <h1>🗺️ ErrandPlanner</h1>
+            <p>Transform chaotic errands into efficient routes</p>
         </header>
-
-        <!-- Add Errand Form -->
-        <section class="add-errand-section">
-            <h2>Add New Errand</h2>
-            <form id="errand-form" class="errand-form">
-                <div class="form-group">
-                    <label for="errand-task">Task</label>
-                    <input type="text" id="errand-task" name="task" placeholder="What do you need to do?" required>
+        
+        <main>
+            <section class="input-section">
+                <h2>Add Your Errands</h2>
+                <div class="input-group">
+                    <input type="text" id="errandInput" placeholder="Enter location (e.g., Grocery Store, 123 Main St)" />
+                    <button class="add-btn" onclick="addErrand()">Add</button>
                 </div>
+            </section>
 
-                <div class="form-group">
-                    <label for="errand-location">Location</label>
-                    <input type="text" id="errand-location" name="location" placeholder="Where (store, address, area)" required>
-                </div>
+            <section class="errand-list-section">
+                <h3>Your Errands</h3>
+                <ul id="errandList" class="errand-list"></ul>
+            </section>
 
-                <div class="form-group">
-                    <label for="errand-priority">Priority</label>
-                    <select id="errand-priority" name="priority" required>
-                        <option value="">Select priority</option>
-                        <option value="high">🔴 High</option>
-                        <option value="medium">🟡 Medium</option>
-                        <option value="low">🟢 Low</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="errand-category">Category</label>
-                    <select id="errand-category" name="category">
-                        <option value="">Select category (optional)</option>
-                        <option value="grocery">🛒 Grocery</option>
-                        <option value="pharmacy">💊 Pharmacy</option>
-                        <option value="bank">🏦 Bank</option>
-                        <option value="shopping">🛍️ Shopping</option>
-                        <option value="gas">⛽ Gas Station</option>
-                        <option value="other">📦 Other</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn-add">Add Errand</button>
-            </form>
-        </section>
-
-        <!-- Errand List Display -->
-        <section class="errand-list-section">
-            <div class="list-header">
-                <h2>Your Errands</h2>
-                <div class="filter-controls">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="high">High</button>
-                    <button class="filter-btn" data-filter="medium">Medium</button>
-                    <button class="filter-btn" data-filter="low">Low</button>
-                </div>
-            </div>
-
-            <div class="errand-list" id="errand-list">
-                <!-- Errands will be populated dynamically -->
-                <div class="empty-state" id="empty-state">
-                    <p>📝 No errands yet! Add your first errand above.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="stats-section">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-number" id="total-errands">0</span>
-                    <span class="stat-label">Total Errands</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="high-priority">0</span>
-                    <span class="stat-label">High Priority</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="locations-count">0</span>
-                    <span class="stat-label">Locations</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Route Planning Button -->
-        <section class="route-section">
-            <button id="optimize-route" class="btn-route" disabled>
-                🗺️ Optimize Route
+            <button id="optimizeBtn" class="optimize-btn" onclick="optimizeRoute()" disabled>
+                🚀 Optimize My Route
             </button>
-        </section>
+
+            <section id="results" class="results-section" style="display: none;">
+                <h3>Optimized Route</h3>
+                <div id="routeResults"></div>
+            </section>
+        </main>
     </div>
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry"></script>
     <script src="app.js"></script>
 </body>
 </html>
