@@ -10,35 +10,45 @@
     <div class="container">
         <header>
             <h1>🗺️ ErrandPlanner</h1>
-            <p>Transform chaotic errands into efficient routes</p>
+            <p>Plan your errands efficiently and save time!</p>
         </header>
-        
+
         <main>
             <section class="input-section">
-                <h2>Add Your Errands</h2>
                 <div class="input-group">
-                    <input type="text" id="errandInput" placeholder="Enter location (e.g., Grocery Store, 123 Main St)" />
-                    <button class="add-btn" onclick="addErrand()">Add</button>
+                    <input type="text" id="errandInput" placeholder="Enter an errand location (e.g., grocery store, bank)" autocomplete="off">
+                    <button class="add-btn" onclick="addErrand()">Add Errand</button>
                 </div>
             </section>
 
-            <section class="errand-list-section">
-                <h3>Your Errands</h3>
-                <ul id="errandList" class="errand-list"></ul>
+            <section class="errands-list">
+                <h3>Your Errands:</h3>
+                <ul id="errandsList" class="errands-container">
+                    <li class="placeholder">Add your first errand above!</li>
+                </ul>
             </section>
 
-            <button id="optimizeBtn" class="optimize-btn" onclick="optimizeRoute()" disabled>
-                🚀 Optimize My Route
-            </button>
+            <section class="optimization">
+                <button class="optimize-btn" id="optimizeBtn" onclick="optimizeRoute()" disabled>
+                    🚀 Optimize My Route
+                </button>
+            </section>
 
-            <section id="results" class="results-section" style="display: none;">
-                <h3>Optimized Route</h3>
+            <section class="results" id="resultsSection" style="display: none;">
+                <h3>Optimized Route:</h3>
                 <div id="routeResults"></div>
+                <div id="map" class="map-container"></div>
             </section>
         </main>
+
+        <footer>
+            <p>Built with ❤️ for efficient errand running</p>
+        </footer>
     </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry"></script>
     <script src="app.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry&callback=initMap">
+    </script>
 </body>
 </html>
